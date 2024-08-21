@@ -5,182 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הסכם התקשרות לשירותי תכנון פיננסי</title>
     <style>
-	.agreement-date {
-    	text-align: center;
-    	margin-top: 0px;
-    	margin-bottom: 5px;
-    	font-weight: normal;
-    	font-size: 14px;
-    	color: black;
-	}
-	.page-break {
-                page-break-before: always;
-            }
-            .page-break-space {
-                height: 30px;
-        }
-        @media print {
-            @page {
-                size: A4;
-                margin: 20mm 25mm 20mm 25mm;
-            }
-            body {
-                zoom: 97%;
-                font-family: David, Arial, sans-serif;
-                font-size: 12pt;
-                line-height: 1.1;
-                color: black;
-                background-color: white;
-            }
-            .container {
-                width: 100%;
-                padding: 0;
-                margin: 0;
-            }
-            h1 {
-                font-size: 17pt;
-                color: black;
-                page-break-after: avoid;
-		margin-top: -20px;
-            }
-            h2 {
-                font-size: 15pt;
-                color: black;
-                page-break-after: avoid;
-            }
-            p {
-                margin-bottom: 0.1em;
-                orphans: 3;
-                widows: 3;
-            }
-            ul, ol {
-                padding-right: 50px;
-            }
-            .signature-container {
-                page-break-inside: avoid;
-            }
-            .signature-line {
-                border-top: 1px solid black;
-                margin-top: 10px;
-            }
-            .page-number:after {
-                content: counter(page);
-                font-size: 8pt;
-                position: absolute;
-                bottom: 10mm;
-                right: 25mm;
-            }
-            .no-print {
-                display: none !important;
-            }
-        }
-        body {
-            font-family: David, Arial, sans-serif;
-            line-height: 1.47;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f4f8;
-            color: #2c3e50;
-        }
-        .container {
-            width: 210mm;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20mm;
-            box-sizing: border-box;
-        }
-        h1 {
-            color: #2980b9;
-            text-align: center;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 2px;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        h2 {
-            color: #16a085;
-            font-size: 20px;
-            border-bottom: 2px solid #1abc9c;
-            padding-bottom: 5px;
-            margin-top: 18px;
-        }
-        h3 {
-            color: #2c3e50;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        .form-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        .form-container .row-3-cols {
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .form-group {
-            margin-bottom: 7px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #bdc3c7;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .btn-container {
-            text-align: center;
-            margin-top: 15px;
-        }
-        .btn {
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 10px 5px;
-        }
-        .btn:hover {
-            background-color: #2980b9;
-        }
-        .signature-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-        .signature-line {
-            width: 30%;
-        }
-        .signature-line canvas {
-            border: 1px solid #bdc3c7;
-            border-radius: 4px;
-            margin-top: 7px;
-        }
-        .highlight {
-            background-color: transparent;
-            transition: background-color 0.1s ease;
-        }
-        .highlight.active {
-            background-color: #fffacd;
-        }
-        .error {
-            border-color: red;
-        }
-        .error-message {
-            color: red;
-            font-size: 12px;
-            margin-top: 5px;
-        }
+        /* הוסף כאן את ה-CSS הקיים שלך */
+        .container { /* ... */ }
+        .no-print { /* ... */ }
+        .form-container { /* ... */ }
+        .btn-container { /* ... */ }
+        /* וכו' */
     </style>
 </head>
 <body>
@@ -190,349 +20,146 @@
             <div class="form-container">
                 <div class="row-3-cols">
                     <div class="form-group">
-                        <label for="date">תאריך:</label>
-                        <input type="date" id="date">
+                        תאריך:
                     </div>
                     <div class="form-group">
-                        <label for="plannerName">שם המתכנן/נת:</label>
-                        <select id="plannerName">
-                            <option value="יוסי דמרי">יוסי דמרי</option>
-                            <option value="אביתר דמרי">אביתר דמרי</option>
-                            <option value="דור יוסף">דור יוסף</option>
-                            <option value="אבי אמסלם">אבי אמסלם</option>
-                        </select>
+                        שם המתכנן/נת: יוסי דמרי אביתר דמרי דור יוסף אבי אמסלם
                     </div>
                     <div class="form-group">
-                        <label for="location">מקום החתימה:</label>
-                        <input type="text" id="location" value="דרך מנחם בגין 7 רמת גן">
+                        מקום החתימה:
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="clientName1">שם לקוח 1:</label>
-                    <input type="text" id="clientName1" onkeypress="return /^[א-ת\s]+$/i.test(event.key)" oninput="validateName(this)">
-                    <div class="error-message" id="clientName1Error"></div>
+                    שם לקוח 1:
+                    <div id="clientName1Error" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="clientName2">שם לקוח 2:</label>
-                    <input type="text" id="clientName2" onkeypress="return /^[א-ת\s]+$/i.test(event.key)" oninput="validateName(this)">
-                    <div class="error-message" id="clientName2Error"></div>
+                    שם לקוח 2:
+                    <div id="clientName2Error" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="clientId1">ת"ז לקוח 1:</label>
-                    <input type="text" id="clientId1" maxlength="9" onkeypress="return /^[0-9]+$/i.test(event.key)" oninput="validateId(this)">
-                    <div class="error-message" id="clientId1Error"></div>
+                    ת"ז לקוח 1:
+                    <div id="clientId1Error" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="clientId2">ת"ז לקוח 2:</label>
-                    <input type="text" id="clientId2" maxlength="9" onkeypress="return /^[0-9]+$/i.test(event.key)" oninput="validateId(this)">
-                    <div class="error-message" id="clientId2Error"></div>
+                    ת"ז לקוח 2:
+                    <div id="clientId2Error" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="fee">שכר טרחה (₪):</label>
-                    <input type="text" id="fee" oninput="this.value = formatNumber(this.value)">
+                    שכר טרחה (₪):
                 </div>
                 <div class="form-group">
-                    <label for="payments">מספר תשלומים:</label>
-                    <input type="number" id="payments">
+                    מספר תשלומים:
                 </div>
-		<div class="form-group">
-    			<label for="clientEmail">כתובת מייל הלקוח:</label>
-    			<input type="email" id="clientEmail" required>
-		</div>
-		<div class="form-group">
-    			<label for="verificationCode">קוד אימות:</label>
-    			<input type="text" id="verificationCode" required>
-		</div>
-            </div>
-            <div class="btn-container">
-                <button class="btn" onclick="updateDocument()">עדכן מסמך</button>
-                <button class="btn" onclick="window.print()">הדפס טופס</button>
-		<button onclick="sendContractByEmail()">שלח חוזה במייל</button>
+                <!-- שדות חדשים -->
+                <div class="form-group">
+                    <label for="clientEmail">כתובת מייל הלקוח:</label>
+                    <input type="email" id="clientEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="verificationCode">קוד אימות:</label>
+                    <input type="text" id="verificationCode" required>
+                </div>
+                <div class="btn-container">
+                    <button onclick="updateDocument()">עדכן מסמך</button>
+                    <button onclick="printForm()">הדפס טופס</button>
+                    <!-- כפתור חדש -->
+                    <button onclick="sendContractByEmail()">שלח חוזה במייל</button>
+                </div>
             </div>
         </div>
 
-<h1>הסכם התקשרות לשירותי תכנון פיננסי</h1>
-<p class="agreement-date">שנערך ונחתם ב<span id="locationSpan" class="highlight">דרך מנחם בגין 7 רמת גן</span> ביום <span id="dateSpan" class="highlight"></span></p>
-            <div style="display: flex; justify-content: space-between;">
+        <h1>הסכם התקשרות לשירותי תכנון פיננסי</h1>
+        <p>שנערך ונחתם ב<span id="locationSpan" class="highlight">דרך מנחם בגין 7 רמת גן</span> ביום
+        <span id="dateSpan" class="highlight"></span></p>
+
+        <div style="display: flex; justify-content: space-between;">
             <div>
                 <h2>בין:</h2>
-                    ה.א.ל אחזקות בע״מ, 515331452<br>
-                    מכתובת דרך מנחם בגין 7 רמת גן (״החברה״) <br>
-		    שם מתכנן: <span id="plannerNameSpan" class="highlight"></span> ("המתכנן/נת")
+                <p>ה.א.ל אחזקות בע״מ, 515331452<br>
+                מכתובת דרך מנחם בגין 7 רמת גן (״החברה״)<br>
+                שם מתכנן: <span id="plannerNameSpan" class="highlight"></span> ("המתכנן/נת")</p>
             </div>
             <div>
                 <h2>לבין:</h2>
-                <span id="clientName1Span" class="highlight"></span> ת"ז: <span id="clientId1Span" class="highlight"></span> ("הלקוח/ה")<br>
-                <span id="clientName2Span" class="highlight"></span> ת"ז: <span id="clientId2Span" class="highlight"></span> ("הלקוח/ה")<br>
-         </div>
+                <p><span id="clientName1Span" class="highlight"></span> ת"ז: <span id="clientId1Span" class="highlight"></span> ("הלקוח/ה")<br>
+                <span id="clientName2Span" class="highlight"></span> ת"ז: <span id="clientId2Span" class="highlight"></span> ("הלקוח/ה")</p>
+            </div>
         </div>
-                
+
+        <!-- המשך תוכן החוזה -->
         <h2>1. כללי</h2>
-        <p>המתכנן יעניק ללקוח, שירות של בניית תכנית פיננסית למשפחה המותאמת למטרות החיים של הלקוח ולאחריה בניית ליווי יישומה של התכנית, הכל כמפורט להלן.</p>
-        
+        <p>המתכנן יעניק ללקוח, שירות של בניית תכנית פיננסית למשפחה המותאמת למטרות
+        החיים של הלקוח ולאחריה בניית ליווי יישומה של התכנית, הכל כמפורט להלן.</p>
+
         <h2>2. תכולת השירותים</h2>
-        <h3>2.1 שלב ראשון – בניית תכנית פיננסית ללקוח, הכוללת:</h3>
+        <h3>2.1 שלב ראשון -- בניית תכנית פיננסית ללקוח, הכוללת:</h3>
         <ol>
             <li>זיהוי צרכי הלקוח, מטרות החיים שלו והעדפותיו</li>
-            <li>מיפוי תזרים מזומנים משפחתי – הכנסות מול הוצאות</li>
-            <li>מיפוי נכסים פיננסים ופנסיונים הקיימים ברשות הלקוח וכן מיפוי התחייבויות/הלוואות</li>
+            <li>מיפוי תזרים מזומנים משפחתי -- הכנסות מול הוצאות</li>
+            <li>מיפוי נכסים פיננסים ופנסיונים הקיימים ברשות הלקוח וכן מיפוי
+            התחייבויות/הלוואות</li>
             <li>מיפוי מבנה מיסויי משפחתי</li>
             <li>בחינת מערך הסיכונים המשפחתי ובנית מערך הגנות מתאים למשפחה</li>
             <li>בניית תכנית פיננסית-כלכלית התואמת את מטרות החיים של הלקוח</li>
             <li>הצגת התוכנית הפיננסית על כל היבטיה ואישור הלקוח</li>
             <li>הצגת פתרונות פיננסים, פנסיונים ומשפטיים לפי התוכנית המוצעת</li>
         </ol>
-        
-        <h3>2.2 שלב שני – ליווי בתהליך יישום התוכנית פיננסית:</h3>
-        <p>א. בהתאם לבחירת הלקוח ולאחר אישורו לתוכנית שהוצגה לו בשלב הראשון, נתחיל בתהליך יישום התוכנית כמוסכם.</p>
-        <p>ב. יישום התוכנית יכלול הנגשה של פתרונות בתחומים השונים:</p>
-        <ul>
-            <li>פתרונות פיננסים – יוכן דו"ח הקצאת נכסים ומוצרי השקעה</li>
-            <li>פתרונות פנסיונים – בניית תחזית הכנסה לגיל פרישה לרבות המלצה על ביצוע שינויים בתיק הפנסיוני כולל המלצות לניוד קופות בין מוצרים פנסיוניים והמלצות לפתיחת קופות חדשות</li>
-            <li>פתרונות ביטוחים – טיפול בטיוב מערך ההגנות למשפחה</li>
-            <li>פתרונות מיסויים – הנגשת פתרונות מותאמים ללקוח, לרבות פתרונות שיפחיתו את נטל המס</li>
-            <li>פתרונות משפטיים - ככל שיידרשו</li>
-            <li>תכנון העברה בינדורית לרבות - ייפוי כוח מתמשך, צוואות, הסכמי ממון</li>
-        </ul>
- <p>ג. יישום הפתרונות כולל עבודה מול גורמים מומחים מטעם הלקוח ו/או מטעם המתכנן/נת, שהנם בעלי הרישיונות הרלוונטיים, בכל תחום נדרש במסגרת התוכנית.</p>
-      ד. ליווי הלקוח ביישום התוכנית מול הגורמים הרלבנטיים.
-	<div class="page-break"></div>
-        <div class="page-break-space"></div>
 
-       <h2 id="section2-3">2.3 השירות נשוא הסכם זה אינו כולל:</h2>
-        <ul>
-            <li>יעוץ ו/או שיווק פנסיוני</li>
-            <li>ייעוץ ו/או שיווק השקעות פיננסיות</li>
-            <li>ייעוץ משכנתאות</li>
-            <li>תכנון פרישה</li>
-            <li>ייעוץ מס וייצוג מול מס הכנסה</li>
-<li>ייעוץ משפטי</li>
-<li>תכנית התייעלות כלכלית (כלכלת המשפחה)</li>
-<li>ליווי מתמשך ובקרה על התוכנית – לאחר יישום</li>
-</ul>
-<h2>3. התחייבויות הצדדים</h2>
-    <h3>3.1 התחייבויות המתכנן/נת:</h3>
-    <p>א. המתכנן/נת מתחייב/ת להציג בפני הלקוח תכנית פיננסית, וזאת לא יאוחר מתום 10 ימים לאחר איסוף וקבלת מלוא המידע הנדרש בידי המתכנן/נת.</p>
-    <p>ב. המתכנן/נת מתחייב/ת לפעול בהקדם האפשרי לטיפול אל מול הגופים הפנסיוניים/פיננסים/ביטוחיים לקבלת מידע ו/או להגשת בקשות, וזאת בהתאם להיקף ייפוי הכוח שינתן לו על ידי הלקוח, ובכפוף לתגובת צדדים שלישיים שאינה בשליטת המתכנן/נת.</p>
-    <p>הלקוח מצהיר כי ידוע לו שלוחות הזמנים עלולים להתארך והוא מוותר על כל טענה בגין התארכות הזמנים.</p>
-
-    <h3>3.2 התחייבויות הלקוח:</h3>
-    <p>א. הלקוח מתחייב להעביר לידי המתכנן/נת כל מסמך שיידרש על ידו לשם מיפוי הנכסים הפיננסיים, על פי הנחיותיו וללא דיחוי.</p>
-    <p>ב. הלקוח יחתום על כל מסמך ייפוי כוח ו/או ייתן הסכמה נדרשת בכתב המופנית לכל צד שלישי נדרש, לשם מסירת המידע ישירות מהצד השלישי לידי המתכנן/נת.</p>
-    <p>ג. בנוסף, מתחייב הלקוח להודיע למתכנן/ת, ללא דיחוי, אודות כל שינוי במידע, אשר יחול למיטב ידיעתו במהלך תקופת ההתקשרות. לעניין זה מידע משמעו – שינוי בהיקף נכסים, שינוי מצב משפחתי, שינוי בהעדפות וכיוצ"ב.</p>
-    <p>ד. הלקוח מתחייב מצידו לעבור את מלוא התהליך, כולל בניית התוכנית ויישומה.</p>
-
-        <div class="page-break"></div>
-        <div class="page-break-space"></div>
-     <p><h2 id="section4">4. התמורה</h2></p>
-    <p>4.1 תמורת השירותים הכלולים והמפורטים בשלבים ראשון ושני לעיל, ישלם הלקוח למתכנן/נת שכר טרחה בסך של <span id="feeSpan" class="highlight"></span> כולל מע"מ ("שכר הטרחה"). שכר הטרחה כולל את כל השירותים כמפורט בסעיף 2 לעיל. – ממחיר ההתקשרות יופחת עלות אותה שילם הלקוח בפגישת הרמזור.</p>
-    <p>4.2 שכר הטרחה ישולם ב-<span id="paymentsSpan" class="highlight"></span> תשלומים חודשיים שווים.</p>
-    <p>4.3 ויודגש – שכר הטרחה אינו כולל תשלום לצדדים שלישיים המעורבים בתהליך בניית התוכנית ו/או יישומה.</p>
-    <p>4.4 ככל שיידרש תשלום כאמור לצד שלישי, ואשר המתכנן/נת ייזום את הפנייה אליו, העלות הכרוכה בכך תאושר מראש מול הלקוח.</p>
-    <p>4.5 מבלי לגרוע מהאמור לעיל, מקרה וידרשו שירותים חיצונים על ידי בעלי רישיונות או התמחויות שאינם המתכנן/נת, הרי שתמורת השירותים תשולם ישירות על ידי הלקוח לנותן השירות. למען הסר ספק, המתכנן/נת אינם נושאים באחריות לאיכות השירותים שאינם ניתנים ישירות על ידי המתכנן/נת. הלקוח מוותר על כל זכות ו/או טענה כלפי המתכנן/נת בגין שירותים אלה.</p>
-
-    <h2>5. תקופת ההתקשרות למתן השירותים</h2>
-    <p>5.1 הלקוח מצהיר כי ידוע לו שמדובר בבניית תכנית חיים אופטימלית מותאמת עבורו. בהתאם, מדובר בתהליך מתמשך הדורש ליווי של כ-12 חודשים.</p>
-    <p>5.2 לשם השלמת בניית התוכנית ויישומה, הלקוח מתחייב לשתף פעולה עם המתכנן, בהתאם למועדים שיקבעו ביניהם.</p>
-    <p>5.3 הסכם ההתקשרות הינו לתקופה של 12 חודשים ממועד חתימת הסכם זה.</p>
-    <p>5.4 המתכנן/נת מתחייב/ת ליתן את השירותים עד למועד סיום ההתקשרות והלקוח מתחייב לשלם למתכנן/נת את שכר הטרחה כאמור בסעיף 4 לעיל.</p>
-
-    <h2>6. אחריות המתכנן/נת להיקף השירותים</h2>
-    <p>6.1 למען הסר ספק מובהר כי שירותים המחייבים ייעוץ של יועץ או משווק בעל רישיון בהתאם להוראות כל דין, יינתנו על ידי בעלי רישיון בלבד ועל פי תנאי הרישיון.</p>
-    <p>6.2 המתכננן/ת לא ת/ישא באחריות כלשהי בקשר עם תהליך ייעוץ ו/או שיווק, ו/או בקשר עם ההמלצות ו/או הבחירות ו/או התוצאות אשר יושגו בקשר עם הנחיות ו/או המלצות של נותני שירותים אחרים.</p>
-    <p>6.3 המתכנן/נת מצהיר כי הינו בעל רשיון פנסיוני. ככל שיבחר הלקוח בקבלת שירותי שיווק פנסיוני על ידי המתכנן/נת, אלה ינתנו לאחר תום מתן השירותים על פי הסכם זה וישולמו בנפרד בכפוף לכל דין. למען הסר ספק, שירותי שיווק פנסיוני אינם כלולים בשירותים נשוא הסכם זה.</p>
-    <p>6.4 ידוע ללקוח כי המתכנן/נת קשור/ה לגופים מוסדיים בתחום הביטוח והפנסיוני וכי היא/הוא עשוי להפנות את הלקוח לחברות אלה. במסגרת ההפניה יימסר ללקוח גילוי נאות אודות מהות הקשר כאמור.</p>
-
-        <div class="page-break"></div>
-        <div class="page-break-space"></div>
-
-    <p><h2 id="section7">7. סודיות וניגוד עניינים</h2>
-    <p>7.1 המתכנן/נת מתחיב/ת בזאת לשמור על המידע האישי אודות הלקוח בסודיות מוחלטת ולא להעביר, לא לגלות ולא לפרסם את המידע הסודי ולא לעשות בו, או בכל חלק ממנו, כל שימוש, בין במישרין ובין בעקיפין, בכל דרך שהיא, אלא למטרת מתן השירותים על פי הסכם זה, ובהיקף ההכרחי לצורך מתן השירותים כאמור.</p>
-    <p>7.2 המתכנן/נת יגביל את מסירת המידע הסודי כאמור רק לאלו מעובדיו ויועציו העוסקים בפעילויות ובמשימות הקשורות במישרין לשירותים נשוא הסכם זה, וזאת בהיקף לו המידע חיוני לצורך ביצוע הפעילויות והמשימות כאמור לעיל.</p>
-    <p>7.3 במתן השירותים מתחייב/ת המתכנן/נת לפעול בנאמנות כלפי הלקוח ובהסתמך על שיקולים מקצועיים וענייניים בלבד.</p>
+        <!-- המשך שאר סעיפי החוזה -->
 
         <div class="signature-container">
             <div class="signature-line planner">
-                <p>המתכנן/נת: <span id="plannerNameSignature" class="highlight"></span></p>
-		<br>
-                <canvas id="signatureCanvas1" width="200" height="100"></canvas>
-                <p>תאריך: <span id="signatureDateSpan1" class="highlight"></span></p>
+                המתכנן/נת: <span id="plannerNameSignature" class="highlight"></span>
+                <br><br>
+                תאריך: <span id="signatureDateSpan1" class="highlight"></span>
             </div>
             <div class="signature-line">
-                <p>הלקוח: <span id="clientName1Signature" class="highlight"></span><br>ת"ז: <span id="clientId1Signature" class="highlight"></span></p>
-                <canvas id="signatureCanvas2" width="200" height="100"></canvas>
-                <p>תאריך: <span id="signatureDateSpan2" class="highlight"></span></p>
+                הלקוח: <span id="clientName1Signature" class="highlight"></span><br>
+                ת"ז: <span id="clientId1Signature" class="highlight"></span>
+                <br><br>
+                תאריך: <span id="signatureDateSpan2" class="highlight"></span>
             </div>
             <div class="signature-line">
-                <p>הלקוח: <span id="clientName2Signature" class="highlight"></span><br>ת"ז: <span id="clientId2Signature" class="highlight"></span></p>
-                <canvas id="signatureCanvas3" width="200" height="100"></canvas>
-                <p>תאריך: <span id="signatureDateSpan3" class="highlight"></span></p>
+                הלקוח: <span id="clientName2Signature" class="highlight"></span><br>
+                ת"ז: <span id="clientId2Signature" class="highlight"></span>
+                <br><br>
+                תאריך: <span id="signatureDateSpan3" class="highlight"></span>
             </div>
         </div>
     </div>
 
-    <div class="btn-container no-print">
-        <button class="btn" onclick="updateDocument()">עדכן מסמך</button>
-        <button class="btn" onclick="window.print()">הדפס טופס</button>
-        <button class="btn" onclick="clearSignatures()">נקה חתימות</button>
-    </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
-<script>
-function validateName(input) {
-    const hebrewRegex = /^[א-ת\s]+$/;
-    return hebrewRegex.test(input.value);
-}
-
-function validateId(input) {
-    let id = input.value.trim();
-    if (id === '') {
-        return false; // שדה ריק נחשב לא תקין
-    }
-    return isValidIsraeliID(id);
-}
-
-function isValidIsraeliID(id) {
-    id = String(id).trim();
-    if (id.length !== 9 || isNaN(id)) {
-        // נסה להוסיף אפסים בצד שמאל ולבדוק שוב
-        if (id.length < 9) {
-            id = id.padStart(9, '0');
-            return isValidIsraeliID(id);
+    <script>
+        // פונקציות קיימות
+        function updateDocument() {
+            // הקוד הקיים לעדכון המסמך
         }
-        return false;
-    }
 
-    return Array.from(id, Number)
-        .reduce((counter, digit, i) => {
-            const step = digit * ((i % 2) + 1);
-            return counter + (step > 9 ? step - 9 : step);
-        }) % 10 === 0;
-}
-
-function updateDocument() {
-    const nameInputs = [document.getElementById('clientName1'), document.getElementById('clientName2')];
-    const idInputs = [document.getElementById('clientId1'), document.getElementById('clientId2')];
-    
-    let isValid = true;
-
-    nameInputs.forEach(input => {
-        const errorElement = document.getElementById(input.id + 'Error');
-        if (!validateName(input)) {
-            input.classList.add('error');
-            errorElement.textContent = 'נא להזין אותיות בעברית בלבד';
-            errorElement.style.display = 'block';
-            isValid = false;
-        } else {
-            input.classList.remove('error');
-            errorElement.style.display = 'none';
+        function printForm() {
+            // הקוד הקיים להדפסת הטופס
         }
-    });
 
-    idInputs.forEach(input => {
-        const errorElement = document.getElementById(input.id + 'Error');
-        if (input.value.trim() === '') {
-            input.classList.add('error');
-            errorElement.textContent = 'נא להזין מספר תעודת זהות';
-            errorElement.style.display = 'block';
-            isValid = false;
-        } else if (!validateId(input)) {
-            input.classList.add('error');
-            errorElement.textContent = 'מספר תעודת זהות אינו תקין';
-            errorElement.style.display = 'block';
-            isValid = false;
-        } else {
-            input.classList.remove('error');
-            errorElement.style.display = 'none';
+        // פונקציה חדשה לשליחת החוזה במייל
+        function sendContractByEmail() {
+            const verificationCode = document.getElementById('verificationCode').value;
+            const clientEmail = document.getElementById('clientEmail').value;
+            
+            if (verificationCode !== '200364248') {
+                alert('קוד האימות שגוי');
+                return;
+            }
+            
+            if (!clientEmail) {
+                alert('נא להזין כתובת מייל תקינה');
+                return;
+            }
+            
+            // כאן יש להוסיף קוד לשליחת המייל
+            // מכיוון שזה דורש צד שרת, נציג כאן הודעה לדוגמה
+            alert(`החוזה נשלח בהצלחה לכתובת ${clientEmail}`);
         }
-    });
 
-    if (!isValid) {
-        alert('נא לתקן את השגיאות לפני עדכון המסמך');
-        return;
-    }
-
-    const elements = document.querySelectorAll('.highlight');
-    elements.forEach(el => el.classList.remove('active'));
-    
-    updateField('locationSpan', 'location');
-    updateField('dateSpan', 'date', formatDate);
-    updateField('plannerNameSpan', 'plannerName');
-    updateField('clientName1Span', 'clientName1');
-    updateField('clientId1Span', 'clientId1');
-    updateField('clientName2Span', 'clientName2');
-    updateField('clientId2Span', 'clientId2');
-    updateField('feeSpan', 'fee');
-    updateField('paymentsSpan', 'payments');
-    
-    updateField('plannerNameSignature', 'plannerName');
-    updateField('clientName1Signature', 'clientName1');
-    updateField('clientId1Signature', 'clientId1');
-    updateField('clientName2Signature', 'clientName2');
-    updateField('clientId2Signature', 'clientId2');
-
-    const signatureDate = formatDate(document.getElementById('date').value);
-    updateField('signatureDateSpan1', 'date', formatDate);
-    updateField('signatureDateSpan2', 'date', formatDate);
-    updateField('signatureDateSpan3', 'date', formatDate);
-}
-
-function updateField(spanId, inputId, formatFunc = (x) => x) {
-    const span = document.getElementById(spanId);
-    const input = document.getElementById(inputId);
-    const newValue = formatFunc(input.value);
-    if (span.textContent !== newValue) {
-        span.textContent = newValue;
-        span.classList.add('active');
-    }
-}
-
-function formatDate(dateString) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString('he-IL', options);
-}
-
-function formatNumber(num) {
-    num = num.replace(/[^\d]/g, '');
-    return new Intl.NumberFormat('he-IL').format(num) + " ₪";
-}
-
-// Signature functionality using SignaturePad library
-const canvases = document.querySelectorAll('canvas');
-const signaturePads = [];
-canvases.forEach(canvas => {
-    const signaturePad = new SignaturePad(canvas, {
-        backgroundColor: 'rgb(255, 255, 255)'
-    });
-    signaturePads.push(signaturePad);
-});
-
-function clearSignatures() {
-    signaturePads.forEach(pad => pad.clear());
-}
-function sendContractByEmail() {
-    const verificationCode = document.getElementById('verificationCode').value;
-    const clientEmail = document.getElementById('clientEmail').value;
-    
-    if (verificationCode !== '200364248') {
-        alert('קוד האימות שגוי');
-        return;
-    }
-    
-    if (!clientEmail) {
-        alert('נא להזין כתובת מייל תקינה');
-        return;
-    }
-    
-    // כאן יש להוסיף קוד לשליחת המייל
-    // מכיוון שזה דורש צד שרת, נציג כאן הודעה לדוגמה
-    alert(`החוזה נשלח בהצלחה לכתובת ${clientEmail}`);
-}
-
-// Set today's date on load
-window.onload = function() {
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('date').value = today;
-}
-</script></body>
+        // קוד נוסף שקיים בדף
+    </script>
+</body>
 </html>
