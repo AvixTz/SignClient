@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group">
                     <label for="verificationCode">קוד אימות:</label>
-                    <input type="text" id="verificationCode" required>
+                    <input type="password" id="verificationCode" required>
                 </div>
                 <div class="btn-container">
                     <button onclick="updateDocument()">עדכן מסמך</button>
@@ -154,10 +154,38 @@
                 return;
             }
             
-            // כאן יש להוסיף קוד לשליחת המייל
-            // מכיוון שזה דורש צד שרת, נציג כאן הודעה לדוגמה
-            alert(`החוזה נשלח בהצלחה לכתובת ${clientEmail}`);
+            // יצירת גרסת PDF של החוזה
+            window.print();
+            
+            // שליחת בקשה לשרת לשליחת המייל
+            fetch('/send-contract-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: clientEmail,
+                    // כאן נצטרך להעביר את תוכן החוזה או מזהה ייחודי שלו
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`החוזה נשלח בהצלחה לכתובת ${clientEmail}`);
+                } else {
+                    alert('אירעה שגיאה בשליחת החוזה. אנא נסה שנית.');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('אירעה שגיאה בשליחת החוזה. אנא נסה שנית.');
+            });
         }
+
+        // הסתרת קוד האימות
+        document.getElementById('verificationCode').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/./g, '*');
+        });
 
         // קוד נוסף שקיים בדף
     </script>
