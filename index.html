@@ -47,8 +47,7 @@
             width: 30%;
         }
         input[type="text"],
-        input[type="email"],
-        input[type="password"] {
+        input[type="email"] {
             width: 100%;
             padding: 8px;
             border: 1px solid #ddd;
@@ -160,10 +159,6 @@
                 <div class="form-group">
                     <label for="clientEmail">כתובת מייל הלקוח:</label>
                     <input type="email" id="clientEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="verificationCode">קוד אימות:</label>
-                    <input type="password" id="verificationCode" required>
                 </div>
             </div>
             <div class="btn-container">
@@ -344,13 +339,6 @@
         </div>
     </div>
 
-    <div class="btn-container no-print">
-        <button onclick="updateDocument()">עדכן מסמך</button>
-        <button onclick="printForm()">הדפס טופס</button>
-        <button onclick="sendContractByEmail()">שלח חוזה במייל</button>
-        <button onclick="clearSignatures()">נקה חתימות</button>
-    </div>
-
     <script>
         function updateDocument() {
             // עדכון שדות המסמך
@@ -382,13 +370,7 @@
         }
 
         function sendContractByEmail() {
-            const verificationCode = document.getElementById('verificationCode').value;
             const clientEmail = document.getElementById('clientEmail').value;
-            
-            if (verificationCode !== '200364248') {
-                alert('קוד האימות שגוי');
-                return;
-            }
             
             if (!clientEmail) {
                 alert('נא להזין כתובת מייל תקינה');
@@ -399,21 +381,6 @@
             // מכיוון שזה דורש צד שרת, נציג כאן הודעה לדוגמה
             alert(`החוזה נשלח בהצלחה לכתובת ${clientEmail}`);
         }
-
-        function clearSignatures() {
-            document.getElementById('plannerNameSignature').textContent = '';
-            document.getElementById('clientName1Signature').textContent = '';
-            document.getElementById('clientId1Signature').textContent = '';
-            document.getElementById('clientName2Signature').textContent = '';
-            document.getElementById('clientId2Signature').textContent = '';
-            document.getElementById('signatureDateSpan1').textContent = '';
-            document.getElementById('signatureDateSpan2').textContent = '';
-            document.getElementById('signatureDateSpan3').textContent = '';
-        }
-        // הסתרת קוד האימות
-        document.getElementById('verificationCode').addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/./g, '*');
-        });
 
         // אתחול הדף
         window.onload = function() {
