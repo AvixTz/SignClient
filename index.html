@@ -8,36 +8,21 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
             margin: 0;
             padding: 20px;
-            direction: rtl;
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        h1, h2, h3 {
-            color: #2c3e50;
-        }
-        h1 {
-            text-align: center;
-            border-bottom: 2px solid #2c3e50;
-            padding-bottom: 10px;
-        }
-        .highlight {
-            background-color: #ffe082;
-            padding: 2px 4px;
-            border-radius: 3px;
+        .no-print {
+            display: block;
         }
         .form-container {
             margin-bottom: 20px;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .row-3-cols {
             display: flex;
@@ -46,67 +31,59 @@
         .row-3-cols .form-group {
             width: 30%;
         }
-        input[type="text"],
-        input[type="email"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .btn-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin: 0 5px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #2980b9;
+        .highlight {
+            background-color: yellow;
         }
         .error-message {
             color: red;
-            font-size: 0.9em;
-            margin-top: 5px;
+            display: none;
         }
         .signature-container {
             margin-top: 40px;
-            display: flex;
-            justify-content: space-between;
         }
         .signature-line {
-            width: 30%;
-            border-top: 1px solid #333;
+            border-top: 1px solid #000;
+            margin-top: 20px;
             padding-top: 10px;
-            text-align: center;
+        }
+        .btn-container {
+            margin-top: 20px;
+        }
+        .btn-container button {
+            margin-left: 10px;
         }
         .page-break {
             page-break-after: always;
-            height: 0;
-            display: none;
         }
         .page-break-space {
-            height: 100px;
+            height: 20px;
         }
         @media print {
             .no-print {
                 display: none;
             }
             .page-break {
-                display: block;
+                page-break-after: always;
             }
-            body {
-                padding: 0;
+            .page-break-space {
+                height: 0;
             }
-            .container {
-                box-shadow: none;
-            }
+        }
+        #emailInput {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        #sendEmailBtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        #sendEmailBtn:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -117,86 +94,80 @@
             <div class="form-container">
                 <div class="row-3-cols">
                     <div class="form-group">
-                        <label for="date">תאריך:</label>
-                        <input type="text" id="date">
+                        תאריך: <input type="date" id="dateInput">
                     </div>
                     <div class="form-group">
-                        שם המתכנן/נת: יוסי דמרי אביתר דמרי דור יוסף אבי אמסלם
+                        שם המתכנן/נת: <input type="text" id="plannerNameInput" value="יוסי דמרי אביתר דמרי דור יוסף אבי אמסלם">
                     </div>
                     <div class="form-group">
-                        <label for="location">מקום החתימה:</label>
-                        <input type="text" id="location">
+                        מקום החתימה: <input type="text" id="locationInput" value="דרך מנחם בגין 7 רמת גן">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="clientName1">שם לקוח 1:</label>
-                    <input type="text" id="clientName1">
+                    שם לקוח 1: <input type="text" id="clientName1Input" required>
                     <div id="clientName1Error" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="clientName2">שם לקוח 2:</label>
-                    <input type="text" id="clientName2">
+                    שם לקוח 2: <input type="text" id="clientName2Input">
                     <div id="clientName2Error" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="clientId1">ת"ז לקוח 1:</label>
-                    <input type="text" id="clientId1">
+                    ת"ז לקוח 1: <input type="text" id="clientId1Input" required>
                     <div id="clientId1Error" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="clientId2">ת"ז לקוח 2:</label>
-                    <input type="text" id="clientId2">
+                    ת"ז לקוח 2: <input type="text" id="clientId2Input">
                     <div id="clientId2Error" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="fee">שכר טרחה (₪):</label>
-                    <input type="text" id="fee">
+                    שכר טרחה (₪): <input type="number" id="feeInput" required>
                 </div>
                 <div class="form-group">
-                    <label for="payments">מספר תשלומים:</label>
-                    <input type="text" id="payments">
+                    מספר תשלומים: <input type="number" id="paymentsInput" min="1" required>
                 </div>
                 <div class="form-group">
-                    <label for="clientEmail">כתובת מייל הלקוח:</label>
-                    <input type="email" id="clientEmail" required>
+                    כתובת אימייל לשליחת החוזה: <input type="email" id="emailInput" required>
                 </div>
             </div>
             <div class="btn-container">
-                <button onclick="updateDocument()">עדכן מסמך</button>
-                <button onclick="printForm()">הדפס טופס</button>
-                <button onclick="sendContractByEmail()">שלח חוזה במייל</button>
+                <button id="updateBtn">עדכן מסמך</button>
+                <button id="printBtn">הדפס טופס</button>
+                <button id="clearSignaturesBtn">נקה חתימות</button>
+                <button id="sendEmailBtn">שלח באימייל</button>
             </div>
         </div>
 
         <h1>הסכם התקשרות לשירותי תכנון פיננסי</h1>
-        <p>שנערך ונחתם ב<span id="locationSpan" class="highlight">דרך מנחם בגין 7 רמת גן</span> ביום
-        <span id="dateSpan" class="highlight"></span></p>
+
+        <p>שנערך ונחתם ב<span id="locationSpan" class="highlight">דרך מנחם בגין 7 רמת גן</span> ביום <span id="dateSpan" class="highlight"></span></p>
 
         <div style="display: flex; justify-content: space-between;">
             <div>
                 <h2>בין:</h2>
-                <p>ה.א.ל אחזקות בע״מ, 515331452<br>
-                מכתובת דרך מנחם בגין 7 רמת גן (״החברה״)<br>
-                שם מתכנן: <span id="plannerNameSpan" class="highlight"></span> ("המתכנן/נת")</p>
+                <p>
+                    ה.א.ל אחזקות בע״מ, 515331452<br>
+                    מכתובת דרך מנחם בגין 7 רמת גן (״החברה״)<br>
+                    שם מתכנן: <span id="plannerNameSpan" class="highlight">יוסי דמרי אביתר דמרי דור יוסף אבי אמסלם</span> ("המתכנן/נת")
+                </p>
             </div>
             <div>
                 <h2>לבין:</h2>
-                <p><span id="clientName1Span" class="highlight"></span> ת"ז: <span id="clientId1Span" class="highlight"></span> ("הלקוח/ה")<br>
-                <span id="clientName2Span" class="highlight"></span> ת"ז: <span id="clientId2Span" class="highlight"></span> ("הלקוח/ה")</p>
+                <p>
+                    <span id="clientName1Span" class="highlight"></span> ת"ז: <span id="clientId1Span" class="highlight"></span> ("הלקוח/ה")<br>
+                    <span id="clientName2Span" class="highlight"></span> ת"ז: <span id="clientId2Span" class="highlight"></span> ("הלקוח/ה")
+                </p>
             </div>
         </div>
 
         <h2>1. כללי</h2>
-        <p>המתכנן יעניק ללקוח, שירות של בניית תכנית פיננסית למשפחה המותאמת למטרות
-        החיים של הלקוח ולאחריה בניית ליווי יישומה של התכנית, הכל כמפורט להלן.</p>
+        <p>המתכנן יעניק ללקוח, שירות של בניית תכנית פיננסית למשפחה המותאמת למטרות החיים של הלקוח ולאחריה בניית ליווי יישומה של התכנית, הכל כמפורט להלן.</p>
 
         <h2>2. תכולת השירותים</h2>
         <h3>2.1 שלב ראשון -- בניית תכנית פיננסית ללקוח, הכוללת:</h3>
         <ol>
             <li>זיהוי צרכי הלקוח, מטרות החיים שלו והעדפותיו</li>
             <li>מיפוי תזרים מזומנים משפחתי -- הכנסות מול הוצאות</li>
-            <li>מיפוי נכסים פיננסים ופנסיונים הקיימים ברשות הלקוח וכן מיפוי
-            התחייבויות/הלוואות</li>
+            <li>מיפוי נכסים פיננסים ופנסיונים הקיימים ברשות הלקוח וכן מיפוי התחייבויות/הלוואות</li>
             <li>מיפוי מבנה מיסויי משפחתי</li>
             <li>בחינת מערך הסיכונים המשפחתי ובנית מערך הגנות מתאים למשפחה</li>
             <li>בניית תכנית פיננסית-כלכלית התואמת את מטרות החיים של הלקוח</li>
@@ -205,22 +176,17 @@
         </ol>
 
         <h3>2.2 שלב שני -- ליווי בתהליך יישום התוכנית פיננסית:</h3>
-        <p>א. בהתאם לבחירת הלקוח ולאחר אישורו לתוכנית שהוצגה לו בשלב הראשון, נתחיל
-        בתהליך יישום התוכנית כמוסכם.</p>
+        <p>א. בהתאם לבחירת הלקוח ולאחר אישורו לתוכנית שהוצגה לו בשלב הראשון, נתחיל בתהליך יישום התוכנית כמוסכם.</p>
         <p>ב. יישום התוכנית יכלול הנגשה של פתרונות בתחומים השונים:</p>
         <ul>
             <li>פתרונות פיננסים -- יוכן דו"ח הקצאת נכסים ומוצרי השקעה</li>
-            <li>פתרונות פנסיונים -- בניית תחזית הכנסה לגיל פרישה לרבות המלצה על
-            ביצוע שינויים בתיק הפנסיוני כולל המלצות לניוד קופות בין מוצרים
-            פנסיוניים והמלצות לפתיחת קופות חדשות</li>
+            <li>פתרונות פנסיונים -- בניית תחזית הכנסה לגיל פרישה לרבות המלצה על ביצוע שינויים בתיק הפנסיוני כולל המלצות לניוד קופות בין מוצרים פנסיוניים והמלצות לפתיחת קופות חדשות</li>
             <li>פתרונות ביטוחים -- טיפול בטיוב מערך ההגנות למשפחה</li>
-            <li>פתרונות מיסויים -- הנגשת פתרונות מותאמים ללקוח, לרבות פתרונות
-            שיפחיתו את נטל המס</li>
+            <li>פתרונות מיסויים -- הנגשת פתרונות מותאמים ללקוח, לרבות פתרונות שיפחיתו את נטל המס</li>
             <li>פתרונות משפטיים - ככל שיידרשו</li>
             <li>תכנון העברה בינדורית לרבות - ייפוי כוח מתמשך, צוואות, הסכמי ממון</li>
         </ul>
-        <p>ג. יישום הפתרונות כולל עבודה מול גורמים מומחים מטעם הלקוח ו/או מטעם
-        המתכנן/נת, שהנם בעלי הרישיונות הרלוונטיים, בכל תחום נדרש במסגרת התוכנית.</p>
+        <p>ג. יישום הפתרונות כולל עבודה מול גורמים מומחים מטעם הלקוח ו/או מטעם המתכנן/נת, שהנם בעלי הרישיונות הרלוונטיים, בכל תחום נדרש במסגרת התוכנית.</p>
         <p>ד. ליווי הלקוח ביישום התוכנית מול הגורמים הרלבנטיים.</p>
 
         <div class="page-break"></div>
@@ -240,83 +206,44 @@
 
         <h2>3. התחייבויות הצדדים</h2>
         <h3>3.1 התחייבויות המתכנן/נת:</h3>
-        <p>א. המתכנן/נת מתחייב/ת להציג בפני הלקוח תכנית פיננסית, וזאת לא יאוחר מתום
-        10 ימים לאחר איסוף וקבלת מלוא המידע הנדרש בידי המתכנן/נת.</p>
-        <p>ב. המתכנן/נת מתחייב/ת לפעול בהקדם האפשרי לטיפול אל מול הגופים
-        הפנסיוניים/פיננסים/ביטוחיים לקבלת מידע ו/או להגשת בקשות, וזאת בהתאם
-        להיקף ייפוי הכוח שינתן לו על ידי הלקוח, ובכפוף לתגובת צדדים שלישיים
-        שאינה בשליטת המתכנן/נת.</p>
-        <p>הלקוח מצהיר כי ידוע לו שלוחות הזמנים עלולים להתארך והוא מוותר על כל טענה
-        בגין התארכות הזמנים.</p>
+        <p>א. המתכנן/נת מתחייב/ת להציג בפני הלקוח תכנית פיננסית, וזאת לא יאוחר מתום 10 ימים לאחר איסוף וקבלת מלוא המידע הנדרש בידי המתכנן/נת.</p>
+        <p>ב. המתכנן/נת מתחייב/ת לפעול בהקדם האפשרי לטיפול אל מול הגופים הפנסיוניים/פיננסים/ביטוחיים לקבלת מידע ו/או להגשת בקשות, וזאת בהתאם להיקף ייפוי הכוח שינתן לו על ידי הלקוח, ובכפוף לתגובת צדדים שלישיים שאינה בשליטת המתכנן/נת.</p>
+        <p>הלקוח מצהיר כי ידוע לו שלוחות הזמנים עלולים להתארך והוא מוותר על כל טענה בגין התארכות הזמנים.</p>
 
         <h3>3.2 התחייבויות הלקוח:</h3>
-        <p>א. הלקוח מתחייב להעביר לידי המתכנן/נת כל מסמך שיידרש על ידו לשם מיפוי
-        הנכסים הפיננסיים, על פי הנחיותיו וללא דיחוי.</p>
-        <p>ב. הלקוח יחתום על כל מסמך ייפוי כוח ו/או ייתן הסכמה נדרשת בכתב המופנית
-        לכל צד שלישי נדרש, לשם מסירת המידע ישירות מהצד השלישי לידי המתכנן/נת.</p>
-        <p>ג. בנוסף, מתחייב הלקוח להודיע למתכנן/ת, ללא דיחוי, אודות כל שינוי במידע,
-        אשר יחול למיטב ידיעתו במהלך תקופת ההתקשרות. לעניין זה מידע משמעו --
-        שינוי בהיקף נכסים, שינוי מצב משפחתי, שינוי בהעדפות וכיוצ"ב.</p>
+<p>ב. הלקוח יחתום על כל מסמך ייפוי כוח ו/או ייתן הסכמה נדרשת בכתב המופנית לכל צד שלישי נדרש, לשם מסירת המידע ישירות מהצד השלישי לידי המתכנן/נת.</p>
+        <p>ג. בנוסף, מתחייב הלקוח להודיע למתכנן/ת, ללא דיחוי, אודות כל שינוי במידע, אשר יחול למיטב ידיעתו במהלך תקופת ההתקשרות. לעניין זה מידע משמעו -- שינוי בהיקף נכסים, שינוי מצב משפחתי, שינוי בהעדפות וכיוצ"ב.</p>
         <p>ד. הלקוח מתחייב מצידו לעבור את מלוא התהליך, כולל בניית התוכנית ויישומה.</p>
 
         <div class="page-break"></div>
         <div class="page-break-space"></div>
 
         <h2 id="section4">4. התמורה</h2>
-        <p>4.1 תמורת השירותים הכלולים והמפורטים בשלבים ראשון ושני לעיל, ישלם הלקוח
-        למתכנן/נת שכר טרחה בסך של <span id="feeSpan" class="highlight"></span> כולל מע"מ ("שכר
-        הטרחה"). שכר הטרחה כולל את כל השירותים כמפורט בסעיף 2 לעיל. -- ממחיר
-        ההתקשרות יופחת עלות אותה שילם הלקוח בפגישת הרמזור.</p>
-        <p>4.2 שכר הטרחה ישולם ב-<span id="paymentsSpan" class="highlight"></span> תשלומים חודשיים
-        שווים.</p>
-        <p>4.3 ויודגש -- שכר הטרחה אינו כולל תשלום לצדדים שלישיים המעורבים בתהליך
-        בניית התוכנית ו/או יישומה.</p>
-        <p>4.4 ככל שיידרש תשלום כאמור לצד שלישי, ואשר המתכנן/נת ייזום את הפנייה
-        אליו, העלות הכרוכה בכך תאושר מראש מול הלקוח.</p>
-        <p>4.5 מבלי לגרוע מהאמור לעיל, מקרה וידרשו שירותים חיצונים על ידי בעלי
-        רישיונות או התמחויות שאינם המתכנן/נת, הרי שתמורת השירותים תשולם ישירות
-        על ידי הלקוח לנותן השירות. למען הסר ספק, המתכנן/נת אינם נושאים באחריות
-        לאיכות השירותים שאינם ניתנים ישירות על ידי המתכנן/נת. הלקוח מוותר על כל
-        זכות ו/או טענה כלפי המתכנן/נת בגין שירותים אלה.</p>
+        <p>4.1 תמורת השירותים הכלולים והמפורטים בשלבים ראשון ושני לעיל, ישלם הלקוח למתכנן/נת שכר טרחה בסך של <span id="feeSpan" class="highlight"></span> כולל מע"מ ("שכר הטרחה"). שכר הטרחה כולל את כל השירותים כמפורט בסעיף 2 לעיל. -- ממחיר ההתקשרות יופחת עלות אותה שילם הלקוח בפגישת הרמזור.</p>
+        <p>4.2 שכר הטרחה ישולם ב-<span id="paymentsSpan" class="highlight"></span> תשלומים חודשיים שווים.</p>
+        <p>4.3 ויודגש -- שכר הטרחה אינו כולל תשלום לצדדים שלישיים המעורבים בתהליך בניית התוכנית ו/או יישומה.</p>
+        <p>4.4 ככל שיידרש תשלום כאמור לצד שלישי, ואשר המתכנן/נת ייזום את הפנייה אליו, העלות הכרוכה בכך תאושר מראש מול הלקוח.</p>
+        <p>4.5 מבלי לגרוע מהאמור לעיל, מקרה וידרשו שירותים חיצונים על ידי בעלי רישיונות או התמחויות שאינם המתכנן/נת, הרי שתמורת השירותים תשולם ישירות על ידי הלקוח לנותן השירות. למען הסר ספק, המתכנן/נת אינם נושאים באחריות לאיכות השירותים שאינם ניתנים ישירות על ידי המתכנן/נת. הלקוח מוותר על כל זכות ו/או טענה כלפי המתכנן/נת בגין שירותים אלה.</p>
 
         <h2>5. תקופת ההתקשרות למתן השירותים</h2>
-        <p>5.1 הלקוח מצהיר כי ידוע לו שמדובר בבניית תכנית חיים אופטימלית מותאמת
-        עבורו. בהתאם, מדובר בתהליך מתמשך הדורש ליווי של כ-12 חודשים.</p>
-        <p>5.2 לשם השלמת בניית התוכנית ויישומה, הלקוח מתחייב לשתף פעולה עם המתכנן,
-        בהתאם למועדים שיקבעו ביניהם.</p>
+        <p>5.1 הלקוח מצהיר כי ידוע לו שמדובר בבניית תכנית חיים אופטימלית מותאמת עבורו. בהתאם, מדובר בתהליך מתמשך הדורש ליווי של כ-12 חודשים.</p>
+        <p>5.2 לשם השלמת בניית התוכנית ויישומה, הלקוח מתחייב לשתף פעולה עם המתכנן, בהתאם למועדים שיקבעו ביניהם.</p>
         <p>5.3 הסכם ההתקשרות הינו לתקופה של 12 חודשים ממועד חתימת הסכם זה.</p>
-        <p>5.4 המתכנן/נת מתחייב/ת ליתן את השירותים עד למועד סיום ההתקשרות והלקוח
-        מתחייב לשלם למתכנן/נת את שכר הטרחה כאמור בסעיף 4 לעיל.</p>
+        <p>5.4 המתכנן/נת מתחייב/ת ליתן את השירותים עד למועד סיום ההתקשרות והלקוח מתחייב לשלם למתכנן/נת את שכר הטרחה כאמור בסעיף 4 לעיל.</p>
 
         <h2>6. אחריות המתכנן/נת להיקף השירותים</h2>
-        <p>6.1 למען הסר ספק מובהר כי שירותים המחייבים ייעוץ של יועץ או משווק בעל
-        רישיון בהתאם להוראות כל דין, יינתנו על ידי בעלי רישיון בלבד ועל פי תנאי
-        הרישיון.</p>
-        <p>6.2 המתכננן/ת לא ת/ישא באחריות כלשהי בקשר עם תהליך ייעוץ ו/או שיווק,
-        ו/או בקשר עם ההמלצות ו/או הבחירות ו/או התוצאות אשר יושגו בקשר עם הנחיות
-        ו/או המלצות של נותני שירותים אחרים.</p>
-        <p>6.3 המתכנן/נת מצהיר כי הינו בעל רשיון פנסיוני. ככל שיבחר הלקוח בקבלת
-        שירותי שיווק פנסיוני על ידי המתכנן/נת, אלה ינתנו לאחר תום מתן השירותים
-        על פי הסכם זה וישולמו בנפרד בכפוף לכל דין. למען הסר ספק, שירותי שיווק
-        פנסיוני אינם כלולים בשירותים נשוא הסכם זה.</p>
-        <p>6.4 ידוע ללקוח כי המתכנן/נת קשור/ה לגופים מוסדיים בתחום הביטוח והפנסיוני
-        וכי היא/הוא עשוי להפנות את הלקוח לחברות אלה. במסגרת ההפניה יימסר ללקוח
-        גילוי נאות אודות מהות הקשר כאמור.</p>
+        <p>6.1 למען הסר ספק מובהר כי שירותים המחייבים ייעוץ של יועץ או משווק בעל רישיון בהתאם להוראות כל דין, יינתנו על ידי בעלי רישיון בלבד ועל פי תנאי הרישיון.</p>
+        <p>6.2 המתכננן/ת לא ת/ישא באחריות כלשהי בקשר עם תהליך ייעוץ ו/או שיווק, ו/או בקשר עם ההמלצות ו/או הבחירות ו/או התוצאות אשר יושגו בקשר עם הנחיות ו/או המלצות של נותני שירותים אחרים.</p>
+        <p>6.3 המתכנן/נת מצהיר כי הינו בעל רשיון פנסיוני. ככל שיבחר הלקוח בקבלת שירותי שיווק פנסיוני על ידי המתכנן/נת, אלה ינתנו לאחר תום מתן השירותים על פי הסכם זה וישולמו בנפרד בכפוף לכל דין. למען הסר ספק, שירותי שיווק פנסיוני אינם כלולים בשירותים נשוא הסכם זה.</p>
+        <p>6.4 ידוע ללקוח כי המתכנן/נת קשור/ה לגופים מוסדיים בתחום הביטוח והפנסיוני וכי היא/הוא עשוי להפנות את הלקוח לחברות אלה. במסגרת ההפניה יימסר ללקוח גילוי נאות אודות מהות הקשר כאמור.</p>
 
         <div class="page-break"></div>
         <div class="page-break-space"></div>
 
         <h2 id="section7">7. סודיות וניגוד עניינים</h2>
-        <p>7.1 המתכנן/נת מתחיב/ת בזאת לשמור על המידע האישי אודות הלקוח בסודיות
-        מוחלטת ולא להעביר, לא לגלות ולא לפרסם את המידע הסודי ולא לעשות בו, או
-        בכל חלק ממנו, כל שימוש, בין במישרין ובין בעקיפין, בכל דרך שהיא, אלא
-        למטרת מתן השירותים על פי הסכם זה, ובהיקף ההכרחי לצורך מתן השירותים
-        כאמור.</p>
-        <p>7.2 המתכנן/נת יגביל את מסירת המידע הסודי כאמור רק לאלו מעובדיו ויועציו
-        העוסקים בפעילויות ובמשימות הקשורות במישרין לשירותים נשוא הסכם זה, וזאת
-        בהיקף לו המידע חיוני לצורך ביצוע הפעילויות והמשימות כאמור לעיל.</p>
-        <p>7.3 במתן השירותים מתחייב/ת המתכנן/נת לפעול בנאמנות כלפי הלקוח ובהסתמך על
-        שיקולים מקצועיים וענייניים בלבד.</p>
+        <p>7.1 המתכנן/נת מתחיב/ת בזאת לשמור על המידע האישי אודות הלקוח בסודיות מוחלטת ולא להעביר, לא לגלות ולא לפרסם את המידע הסודי ולא לעשות בו, או בכל חלק ממנו, כל שימוש, בין במישרין ובין בעקיפין, בכל דרך שהיא, אלא למטרת מתן השירותים על פי הסכם זה, ובהיקף ההכרחי לצורך מתן השירותים כאמור.</p>
+        <p>7.2 המתכנן/נת יגביל את מסירת המידע הסודי כאמור רק לאלו מעובדיו ויועציו העוסקים בפעילויות ובמשימות הקשורות במישרין לשירותים נשוא הסכם זה, וזאת בהיקף לו המידע חיוני לצורך ביצוע הפעילויות והמשימות כאמור לעיל.</p>
+        <p>7.3 במתן השירותים מתחייב/ת המתכנן/נת לפעול בנאמנות כלפי הלקוח ובהסתמך על שיקולים מקצועיים וענייניים בלבד.</p>
 
         <div class="signature-container">
             <div class="signature-line planner">
@@ -341,59 +268,76 @@
 
     <script>
         function updateDocument() {
-            // עדכון שדות המסמך
-            document.getElementById('locationSpan').textContent = document.getElementById('location').value;
-            document.getElementById('dateSpan').textContent = document.getElementById('date').value;
-            document.getElementById('plannerNameSpan').textContent = "יוסי דמרי אביתר דמרי דור יוסף אבי אמסלם";
-            document.getElementById('clientName1Span').textContent = document.getElementById('clientName1').value;
-            document.getElementById('clientId1Span').textContent = document.getElementById('clientId1').value;
-            document.getElementById('clientName2Span').textContent = document.getElementById('clientName2').value;
-            document.getElementById('clientId2Span').textContent = document.getElementById('clientId2').value;
-            document.getElementById('feeSpan').textContent = document.getElementById('fee').value;
-            document.getElementById('paymentsSpan').textContent = document.getElementById('payments').value;
+            const date = document.getElementById('dateInput').value;
+            const plannerName = document.getElementById('plannerNameInput').value;
+            const location = document.getElementById('locationInput').value;
+            const clientName1 = document.getElementById('clientName1Input').value;
+            const clientName2 = document.getElementById('clientName2Input').value;
+            const clientId1 = document.getElementById('clientId1Input').value;
+            const clientId2 = document.getElementById('clientId2Input').value;
+            const fee = document.getElementById('feeInput').value;
+            const payments = document.getElementById('paymentsInput').value;
 
-            // עדכון חתימות
-            document.getElementById('plannerNameSignature').textContent = "יוסי דמרי אביתר דמרי דור יוסף אבי אמסלם";
-            document.getElementById('clientName1Signature').textContent = document.getElementById('clientName1').value;
-            document.getElementById('clientId1Signature').textContent = document.getElementById('clientId1').value;
-            document.getElementById('clientName2Signature').textContent = document.getElementById('clientName2').value;
-            document.getElementById('clientId2Signature').textContent = document.getElementById('clientId2').value;
+            document.getElementById('dateSpan').textContent = date;
+            document.getElementById('plannerNameSpan').textContent = plannerName;
+            document.getElementById('locationSpan').textContent = location;
+            document.getElementById('clientName1Span').textContent = clientName1;
+            document.getElementById('clientName2Span').textContent = clientName2;
+            document.getElementById('clientId1Span').textContent = clientId1;
+            document.getElementById('clientId2Span').textContent = clientId2;
+            document.getElementById('feeSpan').textContent = fee;
+            document.getElementById('paymentsSpan').textContent = payments;
 
-            let currentDate = new Date().toLocaleDateString('he-IL');
+            document.getElementById('plannerNameSignature').textContent = plannerName;
+            document.getElementById('clientName1Signature').textContent = clientName1;
+            document.getElementById('clientName2Signature').textContent = clientName2;
+            document.getElementById('clientId1Signature').textContent = clientId1;
+            document.getElementById('clientId2Signature').textContent = clientId2;
+
+            const currentDate = new Date().toLocaleDateString('he-IL');
             document.getElementById('signatureDateSpan1').textContent = currentDate;
             document.getElementById('signatureDateSpan2').textContent = currentDate;
             document.getElementById('signatureDateSpan3').textContent = currentDate;
         }
 
-        function printForm() {
+        function printDocument() {
             window.print();
         }
 
-        function sendContractByEmail() {
-            const clientEmail = document.getElementById('clientEmail').value;
-            
-            if (!clientEmail) {
-                alert('נא להזין כתובת מייל תקינה');
+        function clearSignatures() {
+            document.getElementById('plannerNameSignature').textContent = '';
+            document.getElementById('clientName1Signature').textContent = '';
+            document.getElementById('clientName2Signature').textContent = '';
+            document.getElementById('clientId1Signature').textContent = '';
+            document.getElementById('clientId2Signature').textContent = '';
+            document.getElementById('signatureDateSpan1').textContent = '';
+            document.getElementById('signatureDateSpan2').textContent = '';
+            document.getElementById('signatureDateSpan3').textContent = '';
+        }
+
+        document.getElementById('updateBtn').addEventListener('click', updateDocument);
+        document.getElementById('printBtn').addEventListener('click', printDocument);
+        document.getElementById('clearSignaturesBtn').addEventListener('click', clearSignatures);
+
+        // פונקציונליות שליחת אימייל
+        document.getElementById('sendEmailBtn').addEventListener('click', function() {
+            const email = document.getElementById('emailInput').value;
+            if (!email) {
+                alert('נא להזין כתובת אימייל');
                 return;
             }
             
-            // כאן יש להוסיף קוד לשליחת המייל
-            // מכיוון שזה דורש צד שרת, נציג כאן הודעה לדוגמה
-            alert(`החוזה נשלח בהצלחה לכתובת ${clientEmail}`);
-        }
-
-        // אתחול הדף
-        window.onload = function() {
-            // הגדרת תאריך נוכחי
-            let today = new Date().toISOString().substr(0, 10);
-            document.getElementById('date').value = today;
+            // יצירת תוכן החוזה
+            const contractContent = document.querySelector('.container').innerText;
             
-            // הגדרת מקום חתימה ברירת מחדל
-            document.getElementById('location').value = "דרך מנחם בגין 7 רמת גן";
+            // יצירת קישור mailto
+            const subject = encodeURIComponent('הסכם התקשרות לשירותי תכנון פיננסי');
+            const body = encodeURIComponent(contractContent);
+            const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
             
-            // עדכון המסמך עם ערכי ברירת המחדל
-            updateDocument();
-        };
+            // פתיחת לקוח הדואר האלקטרוני המוגדר כברירת מחדל
+            window.location.href = mailtoLink;
+        });
     </script>
 </body>
 </html>
