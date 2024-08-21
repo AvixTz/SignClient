@@ -235,10 +235,19 @@
                     <label for="payments">מספר תשלומים:</label>
                     <input type="number" id="payments">
                 </div>
+		<div class="form-group">
+    			<label for="clientEmail">כתובת מייל הלקוח:</label>
+    			<input type="email" id="clientEmail" required>
+		</div>
+		<div class="form-group">
+    			<label for="verificationCode">קוד אימות:</label>
+    			<input type="text" id="verificationCode" required>
+		</div>
             </div>
             <div class="btn-container">
                 <button class="btn" onclick="updateDocument()">עדכן מסמך</button>
                 <button class="btn" onclick="window.print()">הדפס טופס</button>
+		<button onclick="sendContractByEmail()">שלח חוזה במייל</button>
             </div>
         </div>
 
@@ -500,6 +509,24 @@ canvases.forEach(canvas => {
 
 function clearSignatures() {
     signaturePads.forEach(pad => pad.clear());
+}
+function sendContractByEmail() {
+    const verificationCode = document.getElementById('verificationCode').value;
+    const clientEmail = document.getElementById('clientEmail').value;
+    
+    if (verificationCode !== '200364248') {
+        alert('קוד האימות שגוי');
+        return;
+    }
+    
+    if (!clientEmail) {
+        alert('נא להזין כתובת מייל תקינה');
+        return;
+    }
+    
+    // כאן יש להוסיף קוד לשליחת המייל
+    // מכיוון שזה דורש צד שרת, נציג כאן הודעה לדוגמה
+    alert(`החוזה נשלח בהצלחה לכתובת ${clientEmail}`);
 }
 
 // Set today's date on load
