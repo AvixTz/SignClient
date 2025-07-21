@@ -73,6 +73,9 @@
             .no-print {
                 display: none !important;
             }
+            .client2-content {
+                display: none !important;
+            }
         }
         body {
             font-family: David, Arial, sans-serif;
@@ -181,6 +184,16 @@
             font-size: 12px;
             margin-top: 5px;
         }
+        .client2-content {
+            display: block;
+        }
+        .client2-content.hidden {
+            display: none;
+        }
+        .optional-label {
+            color: #666;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -208,23 +221,23 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="clientName1">שם לקוח 1:</label>
-                    <input type="text" id="clientName1" onkeypress="return /^[א-ת\s]+$/i.test(event.key)" oninput="validateName(this)">
+                    <label for="clientName1">שם לקוח 1 (חובה):</label>
+                    <input type="text" id="clientName1" onkeypress="return /^[א-ת\s]+$/i.test(event.key)" oninput="validateName(this)" required>
                     <div class="error-message" id="clientName1Error"></div>
                 </div>
                 <div class="form-group">
-                    <label for="clientName2">שם לקוח 2:</label>
-                    <input type="text" id="clientName2" onkeypress="return /^[א-ת\s]+$/i.test(event.key)" oninput="validateName(this)">
+                    <label for="clientName2" class="optional-label">שם לקוח 2 (רשות):</label>
+                    <input type="text" id="clientName2" onkeypress="return /^[א-ת\s]+$/i.test(event.key)" oninput="validateName(this); toggleClient2Display()">
                     <div class="error-message" id="clientName2Error"></div>
                 </div>
                 <div class="form-group">
-                    <label for="clientId1">ת"ז לקוח 1:</label>
-                    <input type="text" id="clientId1" maxlength="9" onkeypress="return /^[0-9]+$/i.test(event.key)" oninput="validateId(this)">
+                    <label for="clientId1">ת"ז לקוח 1 (חובה):</label>
+                    <input type="text" id="clientId1" maxlength="9" onkeypress="return /^[0-9]+$/i.test(event.key)" oninput="validateId(this)" required>
                     <div class="error-message" id="clientId1Error"></div>
                 </div>
                 <div class="form-group">
-                    <label for="clientId2">ת"ז לקוח 2:</label>
-                    <input type="text" id="clientId2" maxlength="9" onkeypress="return /^[0-9]+$/i.test(event.key)" oninput="validateId(this)">
+                    <label for="clientId2" class="optional-label">ת"ז לקוח 2 (רשות):</label>
+                    <input type="text" id="clientId2" maxlength="9" onkeypress="return /^[0-9]+$/i.test(event.key)" oninput="validateId(this); toggleClient2Display()">
                     <div class="error-message" id="clientId2Error"></div>
                 </div>
                 <div class="form-group">
@@ -254,7 +267,7 @@
             <div>
                 <h2>לבין:</h2>
                 <span id="clientName1Span" class="highlight"></span> ת"ז: <span id="clientId1Span" class="highlight"></span> ("הלקוח/ה")<br>
-                <span id="clientName2Span" class="highlight"></span> ת"ז: <span id="clientId2Span" class="highlight"></span> ("הלקוח/ה")<br>
+                <span id="clientName2Span" class="highlight client2-content"></span> <span id="clientId2Display" class="client2-content">ת"ז: <span id="clientId2Span" class="highlight"></span></span> <span id="clientLabel2" class="client2-content">("הלקוח/ה")</span><br>
          </div>
         </div>
                 
@@ -358,7 +371,7 @@
                 <canvas id="signatureCanvas2" width="200" height="100"></canvas>
                 <p>תאריך: <span id="signatureDateSpan2" class="highlight"></span></p>
             </div>
-            <div class="signature-line">
+            <div class="signature-line client2-content" id="client2SignatureSection">
                 <p>הלקוח: <span id="clientName2Signature" class="highlight"></span><br>ת"ז: <span id="clientId2Signature" class="highlight"></span></p>
                 <canvas id="signatureCanvas3" width="200" height="100"></canvas>
                 <p>תאריך: <span id="signatureDateSpan3" class="highlight"></span></p>
@@ -376,13 +389,19 @@
 <script>
 function validateName(input) {
     const hebrewRegex = /^[א-ת\s]+$/;
+    if (input.value.trim() === '') {
+        return true; // שדה ריק מותר ללקוח שני
+    }
     return hebrewRegex.test(input.value);
 }
 
 function validateId(input) {
     let id = input.value.trim();
-    if (id === '') {
-        return false; // שדה ריק נחשב לא תקין
+    if (id === '' && input.id === 'clientId2') {
+        return true; // שדה ריק מותר ללקוח שני
+    }
+    if (id === '' && input.id === 'clientId1') {
+        return false; // שדה ריק לא מותר ללקוח ראשון
     }
     return isValidIsraeliID(id);
 }
@@ -405,42 +424,109 @@ function isValidIsraeliID(id) {
         }) % 10 === 0;
 }
 
+function toggleClient2Display() {
+    const client2Name = document.getElementById('clientName2').value.trim();
+    const client2Id = document.getElementById('clientId2').value.trim();
+    const hasClient2Data = client2Name !== '' || client2Id !== '';
+    
+    // מציא את כל האלמנטים של לקוח 2
+    const client2Elements = document.querySelectorAll('.client2-content');
+    
+    if (hasClient2Data) {
+        client2Elements.forEach(el => el.classList.remove('hidden'));
+    } else {
+        client2Elements.forEach(el => el.classList.add('hidden'));
+    }
+}
+
 function updateDocument() {
     const nameInputs = [document.getElementById('clientName1'), document.getElementById('clientName2')];
     const idInputs = [document.getElementById('clientId1'), document.getElementById('clientId2')];
     
     let isValid = true;
 
-    nameInputs.forEach(input => {
-        const errorElement = document.getElementById(input.id + 'Error');
-        if (!validateName(input)) {
-            input.classList.add('error');
-            errorElement.textContent = 'נא להזין אותיות בעברית בלבד';
-            errorElement.style.display = 'block';
-            isValid = false;
-        } else {
-            input.classList.remove('error');
-            errorElement.style.display = 'none';
-        }
-    });
+    // בדיקת לקוח ראשון (חובה)
+    const client1Name = document.getElementById('clientName1');
+    const client1Id = document.getElementById('clientId1');
+    
+    const client1NameError = document.getElementById('clientName1Error');
+    const client1IdError = document.getElementById('clientId1Error');
+    
+    if (client1Name.value.trim() === '') {
+        client1Name.classList.add('error');
+        client1NameError.textContent = 'שם לקוח ראשון הוא שדה חובה';
+        client1NameError.style.display = 'block';
+        isValid = false;
+    } else if (!validateName(client1Name)) {
+        client1Name.classList.add('error');
+        client1NameError.textContent = 'נא להזין אותיות בעברית בלבד';
+        client1NameError.style.display = 'block';
+        isValid = false;
+    } else {
+        client1Name.classList.remove('error');
+        client1NameError.style.display = 'none';
+    }
+    
+    if (client1Id.value.trim() === '') {
+        client1Id.classList.add('error');
+        client1IdError.textContent = 'תעודת זהות לקוח ראשון היא שדה חובה';
+        client1IdError.style.display = 'block';
+        isValid = false;
+    } else if (!validateId(client1Id)) {
+        client1Id.classList.add('error');
+        client1IdError.textContent = 'מספר תעודת זהות אינו תקין';
+        client1IdError.style.display = 'block';
+        isValid = false;
+    } else {
+        client1Id.classList.remove('error');
+        client1IdError.style.display = 'none';
+    }
 
-    idInputs.forEach(input => {
-        const errorElement = document.getElementById(input.id + 'Error');
-        if (input.value.trim() === '') {
-            input.classList.add('error');
-            errorElement.textContent = 'נא להזין מספר תעודת זהות';
-            errorElement.style.display = 'block';
-            isValid = false;
-        } else if (!validateId(input)) {
-            input.classList.add('error');
-            errorElement.textContent = 'מספר תעודת זהות אינו תקין';
-            errorElement.style.display = 'block';
-            isValid = false;
-        } else {
-            input.classList.remove('error');
-            errorElement.style.display = 'none';
+    // בדיקת לקוח שני (אופציונלי)
+    const client2Name = document.getElementById('clientName2');
+    const client2Id = document.getElementById('clientId2');
+    
+    const client2NameError = document.getElementById('clientName2Error');
+    const client2IdError = document.getElementById('clientId2Error');
+    
+    const hasClient2Name = client2Name.value.trim() !== '';
+    const hasClient2Id = client2Id.value.trim() !== '';
+    
+    // אם יש נתונים ללקוח שני, בדוק שהם תקינים
+    if (hasClient2Name && !validateName(client2Name)) {
+        client2Name.classList.add('error');
+        client2NameError.textContent = 'נא להזין אותיות בעברית בלבד';
+        client2NameError.style.display = 'block';
+        isValid = false;
+    } else {
+        client2Name.classList.remove('error');
+        client2NameError.style.display = 'none';
+    }
+    
+    if (hasClient2Id && !validateId(client2Id)) {
+        client2Id.classList.add('error');
+        client2IdError.textContent = 'מספר תעודת זהות אינו תקין';
+        client2IdError.style.display = 'block';
+        isValid = false;
+    } else {
+        client2Id.classList.remove('error');
+        client2IdError.style.display = 'none';
+    }
+
+    // אם יש שם ללקוח שני אבל אין ת"ז, או להיפך
+    if ((hasClient2Name && !hasClient2Id) || (!hasClient2Name && hasClient2Id)) {
+        if (!hasClient2Id) {
+            client2Id.classList.add('error');
+            client2IdError.textContent = 'נא להזין גם תעודת זהות ללקוח שני';
+            client2IdError.style.display = 'block';
         }
-    });
+        if (!hasClient2Name) {
+            client2Name.classList.add('error');
+            client2NameError.textContent = 'נא להזין גם שם ללקוח שני';
+            client2NameError.style.display = 'block';
+        }
+        isValid = false;
+    }
 
     if (!isValid) {
         alert('נא לתקן את השגיאות לפני עדכון המסמך');
@@ -470,6 +556,9 @@ function updateDocument() {
     updateField('signatureDateSpan1', 'date', formatDate);
     updateField('signatureDateSpan2', 'date', formatDate);
     updateField('signatureDateSpan3', 'date', formatDate);
+    
+    // עדכון תצוגת לקוח שני
+    toggleClient2Display();
 }
 
 function updateField(spanId, inputId, formatFunc = (x) => x) {
@@ -483,6 +572,7 @@ function updateField(spanId, inputId, formatFunc = (x) => x) {
 }
 
 function formatDate(dateString) {
+    if (!dateString) return '';
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('he-IL', options);
 }
@@ -510,6 +600,8 @@ function clearSignatures() {
 window.onload = function() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('date').value = today;
+    
+    // הסתרת אלמנטים של לקוח 2 בטעינה ראשונית
+    toggleClient2Display();
 }
-</script></body>
-</html>
+</script>
